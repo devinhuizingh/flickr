@@ -3,8 +3,8 @@ angular.module('myApp', ['ngAnimate'])
 		$scope.searchTerm =""
 		
 		$scope.submit = function(searchTerm){
-			console.log("submit button works")
-			$scope.submitted=true
+			$scope.submitted=true;
+			$scope.success=false;
 			sendData()
 			
 		};
@@ -21,9 +21,11 @@ angular.module('myApp', ['ngAnimate'])
 			$http({url, params})
 
 			.then(function(response){
-				console.log(response.data.photos.photo),
+				$scope.response=response.data.photos.photo;
 				$scope.length=response.data.photos.photo.length;
-				$scope.submitted=false
+				$scope.submitted=false;
+				$scope.success=true;
+				
 			});
 
 

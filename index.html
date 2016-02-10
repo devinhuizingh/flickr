@@ -21,9 +21,11 @@
 		<p> Searching Flickr for photos tagged with "{{searchTerm}}"</p>
 
 	</div>
-	<div class="results" >
+	<div class="results" ng-if=success>
         <h2>We found {{ length }} results for {{ searchTerm }}</h2>
-        <div ng-repeat="response in response">
+        <div ng-repeat="photo in response">
+        	
+        	<img src='https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}.jpg'>
 
 
 
