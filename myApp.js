@@ -1,15 +1,21 @@
 angular.module('myApp', ['ngAnimate'])
 	.controller('myCtrl', function($scope, $http, $q) {
-		$scope.searchTerm =""
+		$scope.searchTerm ="";
+		$scope.success=false;
 		
-		$scope.submit = function(searchTerm){
+		$scope.submit = function(){
 			$scope.submitted=true;
-			$scope.success=false;
-			sendData()
+			
+			sendData().then(
+				function(){
+					$scope.term=$scope.searchTerm
+					$scope.searchTerm ="";
+				})
 			
 		};
 
 		function sendData(){
+			var defer = $q.defer();
 			var url = "https://api.flickr.com/services/rest"
 			var params = {
 			    method: 'flickr.photos.search',
@@ -18,16 +24,20 @@ angular.module('myApp', ['ngAnimate'])
 			    format: 'json',
 			    nojsoncallback: 1
 			}
-			$http({url, params})
-
-			.then(function(response){
+			$http({url, params}).then(
+				function(response){
 				$scope.response=response.data.photos.photo;
 				$scope.length=response.data.photos.photo.length;
 				$scope.submitted=false;
 				$scope.success=true;
-				
+				defer.resolve();
+			},
+			function(error){
+				alert("error")
+				defer.reject()
 			});
 
+			return defer.promise;
 
 		};
 

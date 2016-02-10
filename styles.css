@@ -1,0 +1,25 @@
+img {
+        padding-right: 8px;
+}
+
+form {
+    margin-top: 115px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    
+}
+
+h2 {
+    margin: 8px auto;
+    text-align: center;
+}
+
+p {
+    margin: 8px auto;
+    text-align: center;
+}
+
+div {
+    margin: 0 auto;
+}
