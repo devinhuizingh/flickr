@@ -1,12 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
 	<title>Flickr Search</title>
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body ng-controller="myCtrl">
-	
+	<div> 
+		<form name="inputForm" ng-submit="submit()" >
+
+			<h1>Flickr Searcher</h1>
+			<input type="text" name="search" placeholder="Enter a tag to search for" ng-model="searchTerm"  required>
+			<input type="submit" value="Submit">
+
+		</form>
+
+
+	</div>	
+	<div class="searching" ng-if=submitted>
+		<p> Searching Flickr for photos tagged with "{{searchTerm}}"</p>
+
+	</div>
+	<div class="results" >
+        <h2>We found {{ length }} results for {{ searchTerm }}</h2>
+        <div ng-repeat="response in response">
 
 
 
